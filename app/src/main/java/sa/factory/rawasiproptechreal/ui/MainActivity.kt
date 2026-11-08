@@ -9,7 +9,9 @@ import androidx.compose.material3.*
 import androidx.compose.runtime.*
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
+import androidx.compose.ui.unit.sp
 import sa.factory.rawasiproptechreal.di.DiContainer
 import sa.factory.rawasiproptechreal.ui.screens.*
 import sa.factory.rawasiproptechreal.ui.theme.*
@@ -35,19 +37,19 @@ class MainActivity : ComponentActivity() {
                                 selected = state.activeTab == "home",
                                 onClick = { viewModel.switchTab("home") },
                                 label = { Text("الرئيسية") },
-                                icon = { Text("H", color = if (state.activeTab == "home") BrandPrimary else BrandTextSecondary, fontWeight = FontWeight.Bold) }
+                                icon = { Text("PROP", color = if (state.activeTab == "home") BrandPrimary else BrandTextSecondary, fontWeight = FontWeight.Bold, fontSize = 10.sp) }
                             )
                             NavigationBarItem(
                                 selected = state.activeTab == "telemetry",
                                 onClick = { viewModel.switchTab("telemetry") },
-                                label = { Text("العتاد") },
-                                icon = { Text("IOT", color = if (state.activeTab == "telemetry") BrandPrimary else BrandTextSecondary, fontWeight = FontWeight.Bold, fontSize = 10.sp) }
+                                label = { Text("الماسح ثلاثي الأبعاد") },
+                                icon = { Text("3D", color = if (state.activeTab == "telemetry") BrandPrimary else BrandTextSecondary, fontWeight = FontWeight.Bold, fontSize = 10.sp) }
                             )
                             NavigationBarItem(
                                 selected = state.activeTab == "checkout",
                                 onClick = { viewModel.switchTab("checkout") },
-                                label = { Text("الفاتورة (${state.cart.size})") },
-                                icon = { Text("PAY", color = if (state.activeTab == "checkout") BrandPrimary else BrandTextSecondary, fontWeight = FontWeight.Bold, fontSize = 10.sp) }
+                                label = { Text("الحجوزات (${state.cart.size})") },
+                                icon = { Text("BOOK", color = if (state.activeTab == "checkout") BrandPrimary else BrandTextSecondary, fontWeight = FontWeight.Bold, fontSize = 10.sp) }
                             )
                         }
                     }

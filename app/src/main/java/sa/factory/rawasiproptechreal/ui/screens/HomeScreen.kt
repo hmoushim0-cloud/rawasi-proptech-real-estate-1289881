@@ -1,6 +1,5 @@
 package sa.factory.rawasiproptechreal.ui.screens
 
-import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyColumn
@@ -26,7 +25,8 @@ fun HomeScreen(
     viewModel: RawasiProptechViewModel,
     onItemClick: (RawasiProptechItem) -> Unit
 ) {
-    val categories = listOf("الكل", "الخدمات الرئيسية", "المراقبة الحية", "التقارير الضريبية", "الإعدادات")
+    val categories = listOf("الكل", "فلل فاخرة", "أبراج سكنية", "أراضي استثمارية", "مساحات مكتبية", "جولات 3D حية")
+    val defaultPeripheral = "360 LiDAR Spatial Scanner + Matterport Pro3"
 
     Column(
         modifier = Modifier
@@ -36,8 +36,17 @@ fun HomeScreen(
     ) {
         // Header
         Column {
-            Text("تطبيق رواسي للأملاك — مونتاج فيديو لمشروع عقاري بي", fontSize = 22.sp, fontWeight = FontWeight.Black, color = BrandTextPrimary)
-            Text("منظومة real_estate المتكاملة مع ربط 360 LiDAR Spatial Scanner + Matterport Pro3", fontSize = 12.sp, color = BrandTextSecondary)
+            Text(
+                text = "رواسي العقارية — المنصة الذكية للوساطة والمسح المكاني",
+                fontSize = 20.sp,
+                fontWeight = FontWeight.Black,
+                color = BrandTextPrimary
+            )
+            Text(
+                text = "منظومة PropTech المتكاملة مع ربط 360 LiDAR Spatial Scanner + Matterport Pro3",
+                fontSize = 12.sp,
+                color = BrandTextSecondary
+            )
         }
 
         // Hardware Status Capsule
@@ -52,11 +61,25 @@ fun HomeScreen(
                 horizontalArrangement = Arrangement.SpaceBetween
             ) {
                 Column(modifier = Modifier.weight(1f)) {
-                    Text("العتاد الحي: ${state.telemetry?.peripheralName ?: '360 LiDAR Spatial Scanner + Matterport Pro3'}", fontWeight = FontWeight.Bold, color = BrandPrimary, fontSize = 13.sp)
-                    Text(state.telemetry?.liveReading ?: "360 LiDAR Spatial Scanner + Matterport Pro3: ONLINE | READY", fontSize = 11.sp, color = BrandTextSecondary)
+                    Text(
+                        text = "العتاد الحي: ${state.telemetry?.peripheralName ?: defaultPeripheral}",
+                        fontWeight = FontWeight.Bold,
+                        color = BrandPrimary,
+                        fontSize = 13.sp
+                    )
+                    Text(
+                        text = state.telemetry?.liveReading ?: "360 LiDAR Spatial Scanner + Matterport Pro3: ONLINE | READY",
+                        fontSize = 11.sp,
+                        color = BrandTextSecondary
+                    )
                 }
                 Badge(containerColor = BrandPrimary) {
-                    Text(state.telemetry?.status ?: "ONLINE", color = Color.Black, fontWeight = FontWeight.Bold, modifier = Modifier.padding(2.dp))
+                    Text(
+                        text = state.telemetry?.status ?: "ONLINE",
+                        color = Color.Black,
+                        fontWeight = FontWeight.Bold,
+                        modifier = Modifier.padding(2.dp)
+                    )
                 }
             }
         }
@@ -115,7 +138,7 @@ fun HomeScreen(
                                 contentPadding = PaddingValues(horizontal = 12.dp, vertical = 4.dp),
                                 shape = RoundedCornerShape(8.dp)
                             ) {
-                                Text("إضافة", fontSize = 11.sp, color = Color.Black, fontWeight = FontWeight.Bold)
+                                Text("حجز معاينة 3D", fontSize = 11.sp, color = Color.Black, fontWeight = FontWeight.Bold)
                             }
                         }
                     }

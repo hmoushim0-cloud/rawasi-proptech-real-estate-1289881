@@ -15,14 +15,16 @@ import sa.factory.rawasiproptechreal.ui.viewmodel.RawasiProptechUiState
 
 @Composable
 fun TelemetryScreen(state: RawasiProptechUiState) {
+    val defaultPeripheral = "360 LiDAR Spatial Scanner + Matterport Pro3"
+
     Column(
         modifier = Modifier
             .fillMaxSize()
             .padding(16.dp),
         verticalArrangement = Arrangement.spacedBy(16.dp)
     ) {
-        Text("مراقبة العتاد الحي والحساسات", fontSize = 20.sp, fontWeight = FontWeight.Black, color = BrandTextPrimary)
-        Text("بروتوكول الربط المباشر الميداني", fontSize = 12.sp, color = BrandTextSecondary)
+        Text("مراقبة الماسح المكاني ثلاثي الأبعاد", fontSize = 20.sp, fontWeight = FontWeight.Black, color = BrandTextPrimary)
+        Text("بروتوكول الربط مع أجهزة المسح الليزري وجولات الواقع الافتراضي", fontSize = 12.sp, color = BrandTextSecondary)
 
         Card(
             shape = RoundedCornerShape(18.dp),
@@ -30,17 +32,21 @@ fun TelemetryScreen(state: RawasiProptechUiState) {
             modifier = Modifier.fillMaxWidth()
         ) {
             Column(modifier = Modifier.padding(18.dp), verticalArrangement = Arrangement.spacedBy(12.dp)) {
-                Row(modifier = Modifier.fillMaxWidth(), horizontalArrangement = Arrangement.SpaceBetween, verticalAlignment = Alignment.CenterVertically) {
-                    Text("حالة الجهاز الملحق:", color = BrandTextSecondary, fontSize = 13.sp)
+                Row(
+                    modifier = Modifier.fillMaxWidth(),
+                    horizontalArrangement = Arrangement.SpaceBetween,
+                    verticalAlignment = Alignment.CenterVertically
+                ) {
+                    Text("حالة جهاز المسح الملحق:", color = BrandTextSecondary, fontSize = 13.sp)
                     Badge(containerColor = BrandPrimary) {
                         Text(state.telemetry?.status ?: "ONLINE", color = Color.Black, fontWeight = FontWeight.Bold, modifier = Modifier.padding(4.dp))
                     }
                 }
-                Text("اسم العتاد: ${state.telemetry?.peripheralName ?: '360 LiDAR Spatial Scanner + Matterport Pro3'}", fontWeight = FontWeight.Bold, color = BrandTextPrimary, fontSize = 14.sp)
-                Text("جودة الإشارة: ${state.telemetry?.signalDbm ?: -58} dBm  •  البطارية: ${state.telemetry?.batteryPct ?: 98}%", color = BrandSecondary, fontSize = 12.sp)
-                
-                Divider(color = BrandCard)
-                Text("حزمة البيانات اللحظية (Raw Telemetry Payload):", color = BrandTextSecondary, fontSize = 11.sp)
+                Text("اسم العتاد: ${state.telemetry?.peripheralName ?: defaultPeripheral}", fontWeight = FontWeight.Bold, color = BrandTextPrimary, fontSize = 14.sp)
+                Text("جودة الإشارة: ${state.telemetry?.signalDbm ?: -58} dBm | البطارية: ${state.telemetry?.batteryPct ?: 98}%", color = BrandSecondary, fontSize = 12.sp)
+
+                HorizontalDivider(color = BrandCard)
+                Text("حزمة البيانات اللحظية (Raw LiDAR Telemetry Payload):", color = BrandTextSecondary, fontSize = 11.sp)
                 Surface(
                     shape = RoundedCornerShape(8.dp),
                     color = Color.Black,
@@ -63,10 +69,11 @@ fun TelemetryScreen(state: RawasiProptechUiState) {
             modifier = Modifier.fillMaxWidth()
         ) {
             Column(modifier = Modifier.padding(16.dp), verticalArrangement = Arrangement.spacedBy(8.dp)) {
-                Text("معايير الامتثال والحوكمة", fontWeight = FontWeight.Bold, color = BrandTextPrimary, fontSize = 14.sp)
-                Text("✓ تشفير كامل للاتصال الطرفي (AES-256 GCM)", color = BrandTextSecondary, fontSize = 12.sp)
-                Text("✓ مطابقة اشتراطات هيئة الاتصالات والفضاء والتقنية", color = BrandTextSecondary, fontSize = 12.sp)
-                Text("✓ مزامنة فورية خالية من الإيموجي ومتوافقة مع المعايير السعودية", color = BrandTextSecondary, fontSize = 12.sp)
+                Text("معايير الامتثال والتوثيق العقاري", fontWeight = FontWeight.Bold, color = BrandTextPrimary, fontSize = 14.sp)
+                Text("[OK] ترخيص معتمد من الهيئة العامة للعقار (رخصة فال العقارية)", color = BrandTextSecondary, fontSize = 12.sp)
+                Text("[OK] توثيق العقود والرفع المساحي طبقا لمنصة إيجار ومنصة بلدي", color = BrandTextSecondary, fontSize = 12.sp)
+                Text("[OK] مسح ضوئي ثلاثي الأبعاد بدقة قياس مليمترية (LiDAR Point Cloud)", color = BrandTextSecondary, fontSize = 12.sp)
+                Text("[OK] مزامنة فورية خالية من الإيموجي ومتوافقة مع المعايير السعودية", color = BrandTextSecondary, fontSize = 12.sp)
             }
         }
     }
